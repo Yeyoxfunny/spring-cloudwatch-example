@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: aws-cloudwatch-microservice
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    credentials:
+      instance-profile: false
+      use-default-aws-credentials-chain: true
+    region:
+      auto: false
+      static: ${AWS_REGION:us-east-1}
+
+management:
+  metrics:
+    enable:
+      jvm: false
+    tags:
+      microservice: aws-cloudwatch-microservice
+      region: ${AWS_REGION:us-east-1a}
+    export:
+      cloudwatch:
+        enabled: true
+        batchSize: 20
+        namespace: SpringActuatorMetrics
